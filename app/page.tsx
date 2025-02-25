@@ -199,7 +199,7 @@ export default function Home() {
 
           {/* Chart Box */}
           <a 
-            href="https://dexscreener.com/starknet/0x3d8694b417850342a93cc8923fba1fbb19482b642fb6e09e37e8ede4abfd014" 
+            href="https://dexscreener.com/starknet/0x03d8694b417850342a93cc8923fba1fbb19482b642fb6e09e37e8ede4abfd014-0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7-1020847100762815390390123822295304634-5982-0x0" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="bg-navy border-2 border-salmon rounded-lg w-full sm:w-64 lg:w-72 h-64 lg:h-72 flex flex-col items-center justify-center hover:bg-salmon/10 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-salmon/20"
