@@ -157,7 +157,7 @@ export default function Home() {
         <div className="mt-12 lg:fixed lg:bottom-8 lg:left-0 lg:right-0 flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-8">
           {/* Buy Box */}
           <a 
-            href="https://app.avnu.fi/en" 
+            href="https://app.avnu.fi/fr/eth-scto" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="bg-navy border-2 border-salmon rounded-lg w-full sm:w-64 lg:w-72 h-64 lg:h-72 flex flex-col items-center justify-center hover:bg-salmon/10 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-salmon/20"
@@ -199,7 +199,7 @@ export default function Home() {
 
           {/* Chart Box */}
           <a 
-            href="https://dexscreener.com/" 
+            href="https://dexscreener.com/starknet/0x3d8694b417850342a93cc8923fba1fbb19482b642fb6e09e37e8ede4abfd014" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="bg-navy border-2 border-salmon rounded-lg w-full sm:w-64 lg:w-72 h-64 lg:h-72 flex flex-col items-center justify-center hover:bg-salmon/10 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-salmon/20"
