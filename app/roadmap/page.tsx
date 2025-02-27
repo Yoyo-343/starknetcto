@@ -1,83 +1,9 @@
 "use client"
 
-import React, { useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
 
 export default function Roadmap() {
-  const [gameState, setGameState] = useState({
-    actionsRemaining: 15, // Fixed number of total actions
-    events: [],
-  })
-
-  const startGame = () => {
-    setGameState({
-      actionsRemaining: 15,
-      events: [],
-    })
-  }
-
-  const makeDecision = (effects, optionText) => {
-    const newState = { ...gameState }
-    newState.actionsRemaining -= 1
-    
-    if (newState.actionsRemaining <= 0 && newState.takeover < 100) {
-      newState.gameOver = true
-      newState.gameOverReason = 'You ran out of actions! The community takeover stalled at ' + newState.takeover + '%'
-    }
-
-    // Random events that can occur between turns
-    const randomEvents = [
-      {
-        title: "Market Volatility",
-        description: "Sudden token price fluctuation impacts treasury",
-        effects: { financial: -10 }
-      },
-      {
-        title: "Developer Burnout",
-        description: "One of your key developers needs a break",
-        effects: { development: -15 }
-      },
-      {
-        title: "Viral Meme",
-        description: "A community meme about the takeover goes viral",
-        effects: { community: 15, chaos: 10 }
-      },
-      // Add more random events
-    ];
-
-    // Add to makeDecision function
-    // After milestone check
-    const randomEventChance = 0.3; // 30% chance per turn
-    if (!newState.gameOver && Math.random() < randomEventChance) {
-      const randomEvent = randomEvents[Math.floor(Math.random() * randomEvents.length)];
-      
-      // Apply event effects
-      Object.keys(randomEvent.effects).forEach(key => {
-        newState[key] += randomEvent.effects[key];
-        if (key !== 'takeover' && newState[key] < 0) {
-          newState[key] = 0;
-        }
-      });
-      
-      // Log the event
-      newState.events.push({
-        turn: newState.turn,
-        text: `EVENT: ${randomEvent.title} - ${randomEvent.description}`
-      });
-      
-      // Add visual feedback
-      setSpecialEvent({
-        title: randomEvent.title,
-        description: randomEvent.description,
-        effects: randomEvent.effects
-      });
-      
-      setTimeout(() => {
-        setSpecialEvent(null);
-      }, 3000);
-    }
-  }
-
   return (
     <div className="min-h-screen bg-navy p-8 relative">
       {/* Back Button */}
