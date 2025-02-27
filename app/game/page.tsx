@@ -500,9 +500,18 @@ export default function Game() {
       newState[key] += effects[key];
       changes[key] = effects[key];
       
-      // Ensure percentages don't go below 0
-      if (key !== 'takeover' && newState[key] < 0) {
-        newState[key] = 0;
+      // Ensure percentages don't go below 0 or above 100
+      if (key !== 'takeover') {
+        if (newState[key] < 0) {
+          newState[key] = 0;
+        } else if (newState[key] > 100) {
+          newState[key] = 100;
+        }
+      } else {
+        // For takeover, only cap at 100 (allow it to go below 0 for game mechanics)
+        if (newState[key] > 100) {
+          newState[key] = 100;
+        }
       }
     });
     
@@ -532,9 +541,18 @@ export default function Game() {
       Object.keys(milestone.effects).forEach(key => {
         newState[key] += milestone.effects[key];
         
-        // Ensure percentages don't go below 0 after milestone effects
-        if (key !== 'takeover' && newState[key] < 0) {
-          newState[key] = 0;
+        // Ensure percentages don't go below 0 or above 100 after milestone effects
+        if (key !== 'takeover') {
+          if (newState[key] < 0) {
+            newState[key] = 0;
+          } else if (newState[key] > 100) {
+            newState[key] = 100;
+          }
+        } else {
+          // For takeover, only cap at 100
+          if (newState[key] > 100) {
+            newState[key] = 100;
+          }
         }
       });
     }
