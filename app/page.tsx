@@ -9,6 +9,43 @@ const CoinDot = () => (
   </div>
 )
 
+// First, update or add this CSS at the top if you have a style section
+const sequenceStyles = `
+  .sequence-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(10, 25, 47, 0.9);
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    padding-top: 10vh;
+    overflow-y: auto;
+  }
+
+  .sequence-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .sequence-line {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #FF7B7B;
+    animation: fadeIn 0.5s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+`;
+
 export default function Home() {
   const [showSequence, setShowSequence] = useState(false)
   const [currentStep, setCurrentStep] = useState(0)
@@ -109,9 +146,7 @@ export default function Home() {
           </div>
 
           {/* Right: Navigation Buttons */}
-          <div className={`mt-8 lg:fixed lg:right-12 flex flex-col items-center lg:items-start gap-4 w-full lg:w-44 ${
-            showSequence ? 'lg:w-80' : 'lg:w-44'
-          } transition-all duration-300`}>
+          <div className="mt-8 lg:fixed lg:right-12 flex flex-col items-center lg:items-start gap-4 w-full lg:w-44">
             <Link 
               href="/roadmap"
               className="bg-navy border-2 border-salmon text-salmon hover:bg-salmon/10 transition-all duration-300 rounded-lg px-8 py-2 text-xl font-bold hover:scale-105 inline-block text-center w-44"
@@ -130,6 +165,12 @@ export default function Home() {
             >
               Manifesto
             </Link>
+            <Link 
+              href="/game"
+              className="bg-navy border-2 border-salmon text-salmon hover:bg-salmon/10 transition-all duration-300 rounded-lg px-8 py-2 text-xl font-bold hover:scale-105 inline-block text-center w-44"
+            >
+              CTO Game
+            </Link>
             <button 
               onClick={startSequence}
               className="bg-navy border-2 border-salmon animate-start-cto hover:bg-salmon/10 transition-all duration-300 rounded-lg px-8 py-2 text-xl font-bold hover:scale-105 inline-block text-center w-44"
@@ -139,16 +180,21 @@ export default function Home() {
             
             {/* Sequence Display */}
             {showSequence && (
-              <div className="text-salmon text-base mt-0 pt-1 space-y-2 relative z-[9999] bg-navy/80 p-4 rounded-lg">
-                {sequence.slice(0, currentStep + 1).map((text, index) => (
-                  <div 
-                    key={index}
-                    className="animate-fade-in"
-                  >
-                    {text}
+              <>
+                <style jsx>{sequenceStyles}</style>
+                <div className="sequence-overlay">
+                  <div className="sequence-container">
+                    {sequence.slice(0, currentStep + 1).map((text, index) => (
+                      <div 
+                        key={index}
+                        className="sequence-line"
+                      >
+                        {text}
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </div>
+              </>
             )}
           </div>
         </div>
